@@ -1,31 +1,48 @@
-/* Tổng thể giống ảnh: lề trái rộng, font Arial, màu teal cho tiêu đề */
+/* Tổng thể */
 * { box-sizing: border-box; }
 body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #000; }
-.page { width: 760px; margin-left: 120px; padding-top: 20px; }
+.page {
+  width: 820px;              /* đủ rộng để không rớt dòng */
+  margin: 20px auto 40px;    /* canh giữa gọn gàng */
+}
 
-/* Logo nằm trên cùng bên trái, cách tiêu đề 8px */
-.logo { width: 120px; display: block; margin: 0 0 8px 0; }
+/* Logo + tiêu đề */
+.logo { width: 120px; display: block; margin-bottom: 10px; }
+.title { margin: 0 0 10px; font-size: 40px; color: #0b7c7a; font-weight: 700; }
+.intro { margin: 0 0 18px; line-height: 1.35; }
 
-/* Tiêu đề và mô tả */
-.title { margin: 0 0 10px 0; font-size: 40px; color: #0b7c7a; font-weight: 700; }
-.intro { margin: 0 0 18px 0; line-height: 1.35; }
+/* Tiêu đề phần */
+.section { margin: 18px 0 10px; color: #0b7c7a; font-size: 26px; font-weight: 700; }
 
-/* Tiêu đề từng phần */
-.section { margin: 18px 0 10px 0; color: #0b7c7a; font-size: 26px; }
-
-/* Hàng nhập liệu: label cố định 110px, input 240px để khớp ảnh */
-.form .row { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
-.form label { width: 110px; }
+/* Hàng nhập liệu: KHÔNG cho wrap, label 160px để đủ chỗ */
+.form .row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+  flex-wrap: nowrap;         /* không rớt xuống */
+}
+.form label {
+  width: 160px;              /* rộng hơn để đủ chữ */
+  white-space: nowrap;       /* không cho xuống dòng */
+}
 .form input[type="text"],
 .form input[type="email"],
 .form input[type="date"],
-.form select { width: 240px; padding: 4px; }
+.form select {
+  width: 260px;              /* chiều rộng ô nhập */
+  padding: 4px;
+}
 
-/* Label có xuống dòng “Please contact / me by:” */
-.wrap-label { line-height: 1.2; }
+/* Nhóm lựa chọn: xếp theo hàng, không rớt dòng */
+.choices {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: nowrap;         /* không rớt xuống */
+  margin-bottom: 8px;
+}
+.choices label { white-space: nowrap; }
 
-/* Nhóm radio/checkbox xếp dọc, khoảng cách chuẩn */
-.choices { display: grid; gap: 8px; margin-bottom: 8px; }
-
-/* Nút Submit giống kích thước ảnh */
+/* Nút submit */
 .submit { margin-top: 12px; padding: 6px 14px; }

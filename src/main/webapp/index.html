@@ -13,7 +13,10 @@
       If you have a moment, we'd appreciate it if you would fill out this survey.
     </p>
 
-    <form action="survey" method="post" class="form">
+    <!-- Thêm onsubmit để gọi hàm kiểm tra -->
+    <form action="survey" method="post" class="form" onsubmit="return validateVN(this)">
+
+        
       <h2 class="section">Your information:</h2>
 
       <div class="row">
@@ -62,5 +65,68 @@
       <button type="submit" class="submit">Submit</button>
     </form>
   </main>
+
+
+<script>
+  // Regex: chỉ cho phép chữ cái Unicode + khoảng trắng + ' . -
+  const NAME_PATTERN = /^[\p{L}\s'.-]+$/u;
+  // Regex: ký tự lặp liên tiếp >1 lần
+  const REPEATED_CHAR = /([\p{L}])\1+/u;
+
+  function validateVN(form) {
+    const firstName = form.firstName.value.trim();
+    const lastName  = form.lastName.value.trim();
+    const dob       = form.dob.value;
+
+    // 1) Kiểm tra ký tự hợp lệ
+    if (!NAME_PATTERN.test(firstName)) {
+      alert(`Họ "${firstName}" chỉ được gồm chữ (có thể có dấu), khoảng trắng và ',.-`);
+      form.firstName.focus(); return false;
+    }
+    if (!NAME_PATTERN.test(lastName)) {
+      alert(`Tên "${lastName}" chỉ được gồm chữ (có thể có dấu), khoảng trắng và ',.-`);
+      form.lastName.focus(); return false;
+    }
+
+    // 2) Chặn ký tự lặp liên tiếp >1 lần
+    if (REPEATED_CHAR.test(firstName)) {
+      alert(`Họ "${firstName}" có ký tự lặp liên tiếp (ví dụ "aa", "ii"). Vui lòng nhập lại.`);
+      form.firstName.focus(); return false;
+    }
+    if (REPEATED_CHAR.test(lastName)) {
+      alert(`Tên "${lastName}" có ký tự lặp liên tiếp (ví dụ "aa", "ii"). Vui lòng nhập lại.`);
+      form.lastName.focus(); return false;
+    }
+
+    // 3) Kiểm tra ngày sinh
+    if (!dob) {
+      alert("Vui lòng chọn Ngày sinh.");
+      form.dob.focus(); return false;
+    }
+
+    const birthDate = new Date(dob);
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    if (birthDate > today) {
+      alert("Ngày sinh không được sau ngày hiện tại.");
+      form.dob.focus(); return false;
+    }
+
+    // Tính tuổi
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+
+    if (age > 120) {
+      alert(`Tuổi tính từ ngày sinh "${dob}" là ${age}, vượt quá 120 tuổi. Vui lòng nhập lại.`);
+      form.dob.focus(); return false;
+    }
+
+    return true; // hợp lệ
+  }
+</script>
 </body>
 </html>
