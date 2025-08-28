@@ -1,0 +1,14 @@
+# Build WAR b?ng Maven
+FROM maven:3.9-eclipse-temurin-17 AS build
+WORKDIR /app
+COPY . .
+RUN mvn -Dmaven.test.skip=true package
+
+# Run b?ng Tomcat
+FROM tomcat:10.1-jdk17
+# Xoá webapp m?c d?nh
+RUN rm -rf /usr/local/tomcat/webapps/*
+# Copy WAR t?o t? bu?c build thành ROOT.war
+COPY --from=build /app/target/*-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
+EXPOSE 8080
+CMD ["catalina.sh","run"]
