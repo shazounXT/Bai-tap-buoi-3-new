@@ -22,6 +22,8 @@
     </ul>
 
     <p class="intro">Once again, thank you for filling out our survey!</p>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css?v=2">
+
 </main>
 </body>
 </html>

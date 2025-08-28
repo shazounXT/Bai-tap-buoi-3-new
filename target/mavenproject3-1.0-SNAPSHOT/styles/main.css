@@ -1,48 +1,164 @@
-/* Tổng thể */
-* { box-sizing: border-box; }
-body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #000; }
-.page {
-  width: 820px;              /* đủ rộng để không rớt dòng */
-  margin: 20px auto 40px;    /* canh giữa gọn gàng */
+/* ===== Theme ===== */
+:root{
+  --teal: #0b7c7a;
+  --teal-700: #076b69;
+  --ink: #0f172a;
+  --muted: #4b5563;
+  --line: #e6ecef;
+  --bg: #f6f9fb;
 }
 
-/* Logo + tiêu đề */
-.logo { width: 120px; display: block; margin-bottom: 10px; }
-.title { margin: 0 0 10px; font-size: 40px; color: #0b7c7a; font-weight: 700; }
-.intro { margin: 0 0 18px; line-height: 1.35; }
+*{ box-sizing: border-box; }
+body{
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
 
-/* Tiêu đề phần */
-.section { margin: 18px 0 10px; color: #0b7c7a; font-size: 26px; font-weight: 700; }
+/* ===== Canvas (căn trái sát mép như yêu cầu) ===== */
+.page{
+  width: 860px;                  /* 760–860 đều đẹp, chỉnh tùy ý */
+  margin: 24px 0 40px 16px;      /* trái ~ sát mép */
+  padding: 24px 28px 28px 28px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow:
+    0 8px 24px rgba(16,24,40,.04),
+    0 2px  6px rgba(16,24,40,.07);
+}
 
-/* Hàng nhập liệu: KHÔNG cho wrap, label 160px để đủ chỗ */
-.form .row {
-  display: flex;
+/* ===== Header ===== */
+.logo{
+  width: 110px;
+  height: auto;
+  display: block;
+  margin: 0 0 12px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+}
+.title{
+  margin: 0 0 8px;
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  color: var(--teal);
+}
+.intro{
+  margin: 0 0 20px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+/* ===== Section headings ===== */
+.section{
+  margin: 24px 0 14px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--teal);
+  font-weight: 800;
+  font-size: 22px;
+}
+
+/* ===== Form layout (grid 2 cột: nhãn 180px + input) ===== */
+.form .row{
+  display: grid;
+  grid-template-columns: 180px 1fr;
   align-items: center;
   gap: 16px;
-  margin-bottom: 8px;
-  flex-wrap: nowrap;         /* không rớt xuống */
+  margin-bottom: 12px;
 }
-.form label {
-  width: 160px;              /* rộng hơn để đủ chữ */
-  white-space: nowrap;       /* không cho xuống dòng */
+.form label{
+  color: #374151;
+  font-weight: 600;
+  white-space: nowrap;           /* không rớt dòng nhãn dài */
 }
+
+/* ===== Inputs ===== */
 .form input[type="text"],
 .form input[type="email"],
 .form input[type="date"],
-.form select {
-  width: 260px;              /* chiều rộng ô nhập */
-  padding: 4px;
+.form select{
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #fff;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s, transform .05s;
+}
+.form input:focus,
+.form select:focus{
+  border-color: var(--teal);
+  box-shadow: 0 0 0 4px rgba(11,124,122,.14);
 }
 
-/* Nhóm lựa chọn: xếp theo hàng, không rớt dòng */
-.choices {
+/* ===== Radios / Checkboxes (xếp ngang, cùng lề với cột input) ===== */
+.choices{
   display: flex;
   align-items: center;
   gap: 18px;
-  flex-wrap: nowrap;         /* không rớt xuống */
-  margin-bottom: 8px;
+  flex-wrap: wrap;
+  margin: 0 0 8px 0;
+  padding-left: 180px;           /* thẳng hàng với cột input */
 }
-.choices label { white-space: nowrap; }
+.choices label{ font-weight: 500; color: #374151; }
+input[type="radio"], input[type="checkbox"]{
+  accent-color: var(--teal);     /* màu chủ đạo cho control gốc */
+  width: 16px; height: 16px;
+}
 
-/* Nút submit */
-.submit { margin-top: 12px; padding: 6px 14px; }
+/* ===== Submit button ===== */
+.submit{
+  margin-top: 16px;
+  margin-left: 180px;            /* căn với cột input */
+  padding: 10px 18px;
+  border: none;
+  border-radius: 12px;
+  background: var(--teal);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(11,124,122,.25);
+  transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+}
+.submit:hover{
+  background: var(--teal-700);
+  box-shadow: 0 10px 20px rgba(11,124,122,.28);
+  transform: translateY(-1px);
+}
+.submit:active{
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(11,124,122,.22);
+}
+
+/* ===== Error text (nếu bạn trả về lỗi từ server) ===== */
+.error{ color:#b42318; font-size:12px; margin-left:8px; }
+
+/* ===== Responsive (mobile) ===== */
+@media (max-width: 720px){
+  .page{ width: auto; margin: 12px; padding: 16px; }
+  .form .row{ grid-template-columns: 1fr; }
+  .choices{ padding-left: 0; }
+  .submit{ margin-left: 0; width: 100%; }
+  .title{ font-size: 32px; }
+  .logo{ width: 90px; }
+}
+/* NHÓM RADIO / CHECKBOX: luôn 1 hàng */
+.choices{
+  display: flex;
+  align-items: center;
+  gap: 24px;           /* giảm khoảng cách nếu cần */
+  flex-wrap: nowrap;   /* không cho xuống dòng */
+  white-space: nowrap; /* giữ nhãn liền mạch */
+  overflow-x: auto;    /* nếu thiếu chỗ thì trượt ngang thay vì rớt dòng */
+  padding-left: 180px; /* nếu bạn đang căn cột, giữ lại; bỏ nếu không dùng grid cột */
+}
+
+/* ẩn thanh cuộn ngang (tùy chọn) */
+.choices::-webkit-scrollbar{ display:none; }
+.choices{ scrollbar-width: none; }
+
+.choices label{ white-space: nowrap; }

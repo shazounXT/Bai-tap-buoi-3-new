@@ -13,7 +13,6 @@
       If you have a moment, we'd appreciate it if you would fill out this survey.
     </p>
 
-    <!-- Thêm onsubmit để gọi hàm kiểm tra -->
     <form action="survey" method="post" class="form" onsubmit="return validateVN(this)">
 
         
@@ -66,7 +65,7 @@
     </form>
   </main>
 
-
+<link rel="stylesheet" href="styles/main.css?v=2">
 <script>
   // Regex: chỉ cho phép chữ cái Unicode + khoảng trắng + ' . -
   const NAME_PATTERN = /^[\p{L}\s'.-]+$/u;
