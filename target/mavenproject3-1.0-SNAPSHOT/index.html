@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Survey</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <main class="page">
+<img class="logo" src="images/murach-logo.jpg" alt="Murach Logo">
+    <h1 class="title">Survey</h1>
+    <p class="intro">
+      If you have a moment, we'd appreciate it if you would fill out this survey.
+    </p>
+
+    <form action="survey" method="post" class="form">
+      <h2 class="section">Your information:</h2>
+
+      <div class="row">
+        <label for="firstName">First Name</label>
+        <input id="firstName" name="firstName" type="text" required>
+      </div>
+
+      <div class="row">
+        <label for="lastName">Last Name</label>
+        <input id="lastName" name="lastName" type="text" required>
+      </div>
+
+      <div class="row">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required>
+      </div>
+
+      <div class="row">
+        <label for="dob">Date of Birth</label>
+        <input id="dob" name="dob" type="date" required>
+      </div>
+
+      <h2 class="section">How did you hear about us?</h2>
+      <div class="choices">
+        <label><input type="radio" name="hear" value="Search engine" checked> Search engine</label>
+        <label><input type="radio" name="hear" value="Word of mouth"> Word of mouth</label>
+        <label><input type="radio" name="hear" value="Social Media"> Social Media</label>
+        <label><input type="radio" name="hear" value="Other"> Other</label>
+      </div>
+
+      <h2 class="section">Would you like to receive announcements about new CDs and special offers?</h2>
+      <div class="choices">
+        <label><input type="checkbox" name="offers" value="YES, I'd like that."> YES, I'd like that.</label>
+        <label><input type="checkbox" name="emailoffers" value="YES, please send me email announcements."> YES, please send me email announcements.</label>
+      </div>
+
+      <div class="row">
+        <label for="contact" class="wrap-label">Please contact<br>me by:</label>
+        <select id="contact" name="contact">
+          <option>Email or postal mail</option>
+          <option>Email only</option>
+          <option>Postal mail only</option>
+        </select>
+      </div>
+
+      <button type="submit" class="submit">Submit</button>
+    </form>
+  </main>
+</body>
+</html>

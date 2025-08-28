@@ -1,0 +1,31 @@
+/* Tổng thể giống ảnh: lề trái rộng, font Arial, màu teal cho tiêu đề */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #000; }
+.page { width: 760px; margin-left: 120px; padding-top: 20px; }
+
+/* Logo nằm trên cùng bên trái, cách tiêu đề 8px */
+.logo { width: 120px; display: block; margin: 0 0 8px 0; }
+
+/* Tiêu đề và mô tả */
+.title { margin: 0 0 10px 0; font-size: 40px; color: #0b7c7a; font-weight: 700; }
+.intro { margin: 0 0 18px 0; line-height: 1.35; }
+
+/* Tiêu đề từng phần */
+.section { margin: 18px 0 10px 0; color: #0b7c7a; font-size: 26px; }
+
+/* Hàng nhập liệu: label cố định 110px, input 240px để khớp ảnh */
+.form .row { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+.form label { width: 110px; }
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="date"],
+.form select { width: 240px; padding: 4px; }
+
+/* Label có xuống dòng “Please contact / me by:” */
+.wrap-label { line-height: 1.2; }
+
+/* Nhóm radio/checkbox xếp dọc, khoảng cách chuẩn */
+.choices { display: grid; gap: 8px; margin-bottom: 8px; }
+
+/* Nút Submit giống kích thước ảnh */
+.submit { margin-top: 12px; padding: 6px 14px; }
